@@ -7,7 +7,7 @@ class Hangman {
 
     }
 
-    startGame() {
+    get puzzle() {
         let puzzle = '';
         this.word.forEach((letter) => {
             if (this.guessedLetters.includes(letter) || letter === ' ') {
@@ -21,7 +21,7 @@ class Hangman {
 
     calculateStatus() {
         const finished = this.word.every((letter) => {
-            return this.guessedLetters.includes(letter);
+            return this.guessedLetters.includes(letter) || letter === ' ';
         })
 
         if (this.remainingGuesses === 0) {
@@ -52,7 +52,7 @@ class Hangman {
         }
     }
 
-    statusMessage() {
+    get statusMessage() {
         const status = this.status;
         let textContent = ""
 
