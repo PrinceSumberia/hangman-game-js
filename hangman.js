@@ -36,16 +36,27 @@ Hangman.prototype.guessedLetters = function (letter) {
     } else {
         this.remainingGuesses -= 1;
         this.guessedLetterArray.push(letter);
-        const index = this.letterArray.findIndex(element => element === letter);
-        if (index > -1) {
+        // const index = this.letterArray.findIndex(element => element === letter);
+        const indexes = searchIndex(this.letterArray, letter)
+        indexes.forEach(index => {
             this.guessingArray[index] = letter;
-        }
-        // console.log(this.guessingArray);
+        });
+        console.log(this.guessingArray);
 
         this.printGuessingArray();
         return this.guessedLetterArray;
     }
 };
+
+const searchIndex = (arr, val) => {
+    let indexes = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] == val) {
+            indexes.push(i);
+        }
+    }
+    return indexes;
+}
 
 
 const game1 = new Hangman('Hello world', 5);
